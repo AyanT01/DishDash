@@ -1,5 +1,8 @@
 package com.example.dishdash
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,14 +32,23 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.flow.internal.NoOpContinuation.context
+
 
 @Composable
-fun Onboarding_Screen() {
+fun Onboarding_Screen(navController:NavController) {
+    //val sharedPref = context.getSharedPreferences("YourPrefs", Context.MODE_PRIVATE)
+   // val editor = sharedPref.edit()
+
+    val context = LocalContext.current
     Column {
 
         Image(painter = painterResource(id = R.drawable.logo), contentDescription = "Little Lemon",modifier= Modifier
@@ -99,7 +111,14 @@ fun Onboarding_Screen() {
         }
 
         Row(Modifier.fillMaxHeight()) {
-            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(Color(0XFFF4CE14)), modifier = Modifier
+            Button(onClick = { /*"Registration unsuccessful. Please enter all data." */
+                             if (first_name == "" || last_name == "" || email == "") {
+                                 Toast.makeText(context,"Registration unsuccessful. Please enter all data.",Toast.LENGTH_LONG).show()
+                             }
+                            else {
+                    navController.navigate(Home.route)
+
+                             }}, colors = ButtonDefaults.buttonColors(Color(0XFFF4CE14)), modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.Bottom)
                 .padding(20.dp), shape = RoundedCornerShape(20)) {
@@ -113,5 +132,6 @@ fun Onboarding_Screen() {
 @Preview(showBackground = true)
 @Composable
 fun show_preview() {
-    Onboarding_Screen()
+    val navController = rememberNavController()
+    Onboarding_Screen(navController = navController )
 }
