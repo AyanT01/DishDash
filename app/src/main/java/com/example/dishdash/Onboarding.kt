@@ -3,6 +3,7 @@ package com.example.dishdash
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -38,15 +39,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.flow.internal.NoOpContinuation.context
 
+//import kotlinx.coroutines.flow.internal.NoOpContinuation.context
+//import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
+//val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_info")
 @Composable
 fun Onboarding_Screen(navController:NavController) {
     //val sharedPref = context.getSharedPreferences("YourPrefs", Context.MODE_PRIVATE)
    // val editor = sharedPref.edit()
+    //lateinit var dataStore: DataStore<Preferences>
+    /*suspend fun save(key:String, value:String) {
+        val dataStorekey = stringPreferencesKey(key)
+    }*/
 
     val context = LocalContext.current
     Column {

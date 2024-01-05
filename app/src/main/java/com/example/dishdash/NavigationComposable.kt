@@ -3,6 +3,8 @@ package com.example.dishdash
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost

@@ -67,4 +67,15 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    //implementation ("androidx.datastore:datastore-preferences:1.0.0-alpha04")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
+    // Coroutine Lifecycle Scopes
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
 }
