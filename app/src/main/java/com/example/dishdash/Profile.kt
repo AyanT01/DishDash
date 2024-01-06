@@ -3,6 +3,7 @@ package com.example.dishdash
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
@@ -23,6 +24,7 @@ fun Profile_Screen() {
         Button(onClick = { /*TODO*/ }) {
             Text(text = "Logout")
         }
+        Switch(checked = false , onCheckedChange = {})
 
     }
 

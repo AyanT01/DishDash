@@ -26,6 +26,7 @@ import androidx.lifecycle.lifecycleScope
 //import com.plcoding.datastoreandroid.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
 class MainActivity : ComponentActivity() {
     //private var dataStore = DataStore<Preferences>
     //val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Onboarding")
@@ -33,15 +34,38 @@ class MainActivity : ComponentActivity() {
     //dataStore = createDataStore(name = "settings")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }override fun onStart() {
+    }
+    val sharedPreferences = getSharedPreferences("Little Lemon",Context.MODE_PRIVATE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*override fun onStart() {
         super.onStart()
-        val sharedPreferences = getSharedPreferences("Little Lemon", MODE_PRIVATE)
-            val last_count = sharedPreferences.getInt("StartCount",0)
-            val new_count = last_count + 1
-            Log.d("StartCount","New Count: $new_count")
-            sharedPreferences.edit().putInt("StartCount",new_count).apply()
-        }
-        //val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Onboarding")
+        val sharedPreferences = getSharedPreferences("Little Lemon",Context.MODE_PRIVATE)
+        val lastCount = sharedPreferences.getInt("StartCount",0)
+        val newCount = lastCount + 1
+        Log.d("StartCount", "New Count: $newCount")
+        sharedPreferences.edit().putInt("StartCount",newCount).apply()
+
+    }*/
 
             /*DishDashTheme {
                 // A surface container using the 'background' color from the theme
@@ -55,5 +79,15 @@ class MainActivity : ComponentActivity() {
                     //Profile_Screen()
                 }
             }*/
-        }
 
+
+/*
+override fun onStart() {
+        super.onStart()
+        val sharedPreferences = getSharedPreferences("Little Lemon", MODE_PRIVATE)
+            val last_count = sharedPreferences.getInt("StartCount",0)
+            val new_count = last_count + 1
+            Log.d("StartCount","New Count: $new_count")
+            sharedPreferences.edit().putInt("StartCount",new_count).apply()
+        }
+ */
