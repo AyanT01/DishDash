@@ -72,90 +72,124 @@ import kotlinx.coroutines.launch
 @Composable
 fun Onboarding_Screen(navController:NavController) {
     //val sharedPref = context.getSharedPreferences("YourPrefs", Context.MODE_PRIVATE)
-   // val editor = sharedPref.edit()
+    // val editor = sharedPref.edit()
     //lateinit var dataStore: DataStore<Preferences>
     /*suspend fun save(key:String, value:String) {
         val dataStorekey = stringPreferencesKey(key)
     }*/
+    val context =
+        LocalContext.current// get your context here, possibly via LocalContext.current or other means
+    val first_name = SharedPreferencesManager.getUserData(context, "first_name")
+    if (first_name != null) {
+        // User data exists
+        // Navigate to the profile or other screens
+        navController.navigate(Profile.route)
+    } else {
+        Column {
 
-    val context = LocalContext.current
-    Column {
-
-        Image(painter = painterResource(id = R.drawable.logo), contentDescription = "Little Lemon",modifier= Modifier
-            .fillMaxWidth()
-            .height(60.dp))
-        Row(modifier = Modifier
-            .requiredSize(width = 400.dp, height = 100.dp)
-            .fillMaxWidth()
-            .padding(bottom = 10.dp, top = 10.dp)
-            .background(Color(0XFF495E57)), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-
-            Text(text="Let's get to know you", fontSize = 26.sp,color=Color.White)
-        }
-        var first_name by remember {
-            mutableStateOf("")
-        }
-        var last_name by remember {
-            mutableStateOf("")
-        }
-        var email by remember {
-            mutableStateOf("")
-        }
-        Spacer(modifier = Modifier.height(20.dp))
-        Text(text="Personal Information", fontSize = 23.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 10.dp))
-        Spacer(modifier = Modifier.height(40.dp))
-        Column() {
-            Text(
-                text = "First name",
-                fontSize = 15.sp,
-                modifier = Modifier.padding(horizontal = 10.dp)
-            )
-            OutlinedTextField(
-                value = first_name, onValueChange = { first_name = it },
-                Modifier
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Little Lemon",
+                modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
+                    .height(60.dp)
             )
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Text(
-                text = "Last name",
-                fontSize = 15.sp,
-                modifier = Modifier.padding(horizontal = 10.dp)
-            )
-            OutlinedTextField(
-                value = last_name, onValueChange = { last_name = it },
-                Modifier
+            Row(
+                modifier = Modifier
+                    .requiredSize(width = 400.dp, height = 100.dp)
                     .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
-            )
-            Spacer(modifier = Modifier.height(20.dp))
+                    .padding(bottom = 10.dp, top = 10.dp)
+                    .background(Color(0XFF495E57)),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-            Text(text = "Email", fontSize = 15.sp, modifier = Modifier.padding(horizontal = 10.dp))
-            OutlinedTextField(
-                value = email, onValueChange = { email = it },
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
-            )
-        }
-
-        Row(Modifier.fillMaxHeight()) {
-            Button(onClick = { /*"Registration unsuccessful. Please enter all data." */
-                             if (first_name == "" || last_name == "" || email == "") {
-                                 Toast.makeText(context,"Registration unsuccessful. Please enter all data.",Toast.LENGTH_LONG).show()
-                             }
-                            else {
-                    navController.navigate(Home.route)
-
-                             }}, colors = ButtonDefaults.buttonColors(Color(0XFFF4CE14)), modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Bottom)
-                .padding(20.dp), shape = RoundedCornerShape(20)) {
-                Text(text="Register", color = Color.Black)
+                Text(text = "Let's get to know you", fontSize = 26.sp, color = Color.White)
             }
-        }
+            var first_name by remember {
+                mutableStateOf("")
+            }
+            var last_name by remember {
+                mutableStateOf("")
+            }
+            var email by remember {
+                mutableStateOf("")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                text = "Personal Information",
+                fontSize = 23.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(horizontal = 10.dp)
+            )
+            Spacer(modifier = Modifier.height(40.dp))
+            Column() {
+                Text(
+                    text = "First name",
+                    fontSize = 15.sp,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                )
+                OutlinedTextField(
+                    value = first_name, onValueChange = { first_name = it },
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp)
+                )
+                Spacer(modifier = Modifier.height(20.dp))
 
+                Text(
+                    text = "Last name",
+                    fontSize = 15.sp,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                )
+                OutlinedTextField(
+                    value = last_name, onValueChange = { last_name = it },
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp)
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = "Email",
+                    fontSize = 15.sp,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                )
+                OutlinedTextField(
+                    value = email, onValueChange = { email = it },
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp)
+                )
+            }
+
+            Row(Modifier.fillMaxHeight()) {
+                Button(
+                    onClick = { /*"Registration unsuccessful. Please enter all data." */
+
+                        if (first_name == "" || last_name == "" || email == "") {
+                            Toast.makeText(
+                                context,
+                                "Registration unsuccessful. Please enter all data.",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                                val first_name = SharedPreferencesManager.saveUserData(context, "first_name",first_name)
+                                val last_name = SharedPreferencesManager.saveUserData(context, "last_name",last_name)
+                                val email = SharedPreferencesManager.saveUserData(context, "email",email)
+                            navController.navigate(Home.route)
+
+                        }
+                    }, colors = ButtonDefaults.buttonColors(Color(0XFFF4CE14)), modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Bottom)
+                        .padding(20.dp), shape = RoundedCornerShape(20)
+                ) {
+                    Text(text = "Register", color = Color.Black)
+                }
+            }
+
+        }
     }
 }
 

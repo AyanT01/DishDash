@@ -1,6 +1,7 @@
 package com.example.dishdash
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -23,6 +24,7 @@ import androidx.datastore.preferences.core.edit
 //import androidx.datastore.preferences.core.preferencesKey
 //import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 //import com.plcoding.datastoreandroid.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -34,8 +36,16 @@ class MainActivity : ComponentActivity() {
     //dataStore = createDataStore(name = "settings")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContent {
+            Navigation(navController = rememberNavController())
+
+        }
+
+
     }
-    val sharedPreferences = getSharedPreferences("Little Lemon",Context.MODE_PRIVATE)
+
+
+}
 
 
 
