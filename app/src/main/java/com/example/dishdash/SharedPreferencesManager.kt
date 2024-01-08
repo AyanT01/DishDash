@@ -21,4 +21,8 @@ object SharedPreferencesManager {
         return value
 
     }
+    fun clear(context:Context) {
+        val sharedPreferences = context.getSharedPreferences(USER_PREFERENCES,Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+    }
 }

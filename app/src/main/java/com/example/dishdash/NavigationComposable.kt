@@ -21,7 +21,7 @@ fun Navigation(navController: NavController) {
             Home_Screen()
         }
         composable(Profile.route) {
-            Profile_Screen()
+            Profile_Screen(navController)
         }
         composable(Onboarding.route) {
             Onboarding_Screen(navController)

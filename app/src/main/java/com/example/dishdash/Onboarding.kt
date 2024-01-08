@@ -174,9 +174,24 @@ fun Onboarding_Screen(navController:NavController) {
                                 Toast.LENGTH_LONG
                             ).show()
                         } else {
-                                val first_name = SharedPreferencesManager.saveUserData(context, "first_name",first_name)
-                                val last_name = SharedPreferencesManager.saveUserData(context, "last_name",last_name)
-                                val email = SharedPreferencesManager.saveUserData(context, "email",email)
+                                Toast.makeText(context,"Registration successful",Toast.LENGTH_SHORT).show()
+                                SharedPreferencesManager.saveUserData(context, "first_name",first_name)
+                                SharedPreferencesManager.saveUserData(context, "last_name",last_name)
+                                SharedPreferencesManager.saveUserData(context, "email",email)
+                                val saved_first_name = SharedPreferencesManager.getUserData(context,"first_name")
+                                if (saved_first_name != null) {
+                                    Log.v("UserName",saved_first_name)
+                                }
+                            val saved_last_name = SharedPreferencesManager.getUserData(context,"last_name")
+                            if (saved_last_name != null) {
+                                Log.v("UserName",saved_last_name)
+                            }
+                            val saved_email = SharedPreferencesManager.getUserData(context,"email")
+                            if (saved_email != null) {
+                                Log.v("UserName",saved_email)
+                            }
+
+
                             navController.navigate(Home.route)
 
                         }
