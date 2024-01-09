@@ -2,6 +2,8 @@ package com.example.dishdash
 
 import android.content.Context
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +15,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,16 +45,20 @@ fun Profile_Screen(navController: NavController) {
         if (last_name != null) {
             Text(text=last_name,modifier=Modifier.padding(horizontal = 20.dp))
         }
-        Spacer(modifier = Modifier.height(10.dp))
         Text(text="Email",modifier=Modifier.padding(horizontal = 20.dp))
-        val email = SharedPreferencesManager.getUserData(context, "email")
-        if (email != null) {
-            Text(text=email)
+        Spacer(modifier = Modifier.height(10.dp))
+        Box(modifier = Modifier.border(1.dp, Color.Black).padding(start=20.dp)) {
+
+            val email = SharedPreferencesManager.getUserData(context, "email")
+            if (email != null) {
+                Text(text=email,modifier=Modifier.padding(horizontal = 20.dp, vertical = 20.dp), fontSize = 20.sp)
+            }
         }
 
         Button(onClick = {
-            SharedPreferencesManager.clear(context = context)
             navController.navigate(Onboarding.route)
+            SharedPreferencesManager.clear(context = context)
+
         }) {
             Text(text = "Logout")
         }
